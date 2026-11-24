@@ -1,32 +1,41 @@
 import { initializeApp, getApps, getApp, type FirebaseApp } from 'firebase/app';
 import { getAuth, type Auth } from 'firebase/auth';
 import { getFirestore, type Firestore } from 'firebase/firestore';
+import { getAnalytics, isSupported, type Analytics } from 'firebase/analytics';
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || 'YOUR_API_KEY',
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || 'YOUR_PROJECT_ID.firebaseapp.com',
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || 'YOUR_PROJECT_ID',
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || 'YOUR_PROJECT_ID.appspot.com',
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || 'YOUR_MESSAGING_SENDER_ID',
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || 'YOUR_APP_ID',
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || 'AIzaSyBnZQwPE-SvV3i3_qU3oGA3Jo5o8PbJ3Do',
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || 'project-11ec6340-9952-4350-aed.firebaseapp.com',
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || 'project-11ec6340-9952-4350-aed',
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || 'project-11ec6340-9952-4350-aed.firebasestorage.app',
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || '990796794350',
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || '1:990796794350:web:c7140127350de9f8da66ff',
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || 'G-VHCWLY6E8L',
 };
 
-// Initialisation sécurisée
+// Initialisation Firebase
 let app: FirebaseApp;
 let auth: Auth | null = null;
 let db: Firestore | null = null;
+let analytics: Analytics | null = null;
 let isConfigured = false;
 
 try {
   app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
   auth = getAuth(app);
   db = getFirestore(app);
-  isConfigured =
-    firebaseConfig.apiKey !== 'YOUR_API_KEY' &&
-    firebaseConfig.projectId !== 'YOUR_PROJECT_ID';
+  isConfigured = true;
+
+  if (typeof window !== 'undefined') {
+    isSupported().then((supported) => {
+      if (supported) {
+        analytics = getAnalytics(app);
+      }
+    });
+  }
 } catch (error) {
   console.warn('Firebase initialization warning:', error);
   app = {} as FirebaseApp;
 }
 
-export { app, auth, db, isConfigured, firebaseConfig };
+export { app, auth, db, analytics, isConfigured, firebaseConfig };

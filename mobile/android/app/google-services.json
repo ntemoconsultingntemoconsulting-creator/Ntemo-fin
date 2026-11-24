@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "990796794350",
+    "project_id": "project-11ec6340-9952-4350-aed",
+    "storage_bucket": "project-11ec6340-9952-4350-aed.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:990796794350:android:941945b5c4bbfb12da66ff",
+        "android_client_info": {
+          "package_name": "com.ntemoconsulting.NtemoFin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgiJ3DEL6ANuZ1oVTeurh68QI3yftsmCo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

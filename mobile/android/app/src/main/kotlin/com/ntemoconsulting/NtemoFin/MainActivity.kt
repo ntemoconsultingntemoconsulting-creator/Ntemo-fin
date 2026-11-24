@@ -1,4 +1,4 @@
-package com.example.ntemo_mobile
+package com.ntemoconsulting.NtemoFin
 
 import io.flutter.embedding.android.FlutterActivity
 
